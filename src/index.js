@@ -13,7 +13,6 @@ const client = createClient(
   getDefaultClient({
     appName: "Button",
     chains,
-    autoConnect: true,
   })
 );
 
