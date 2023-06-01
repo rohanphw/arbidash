@@ -1,7 +1,7 @@
 import { Contract, utils } from "ethers";
-import ButtonGameABI from "../abi/ButtonGame.json";
+import ButtonGameABI from "../abi/Button.json";
+const contractAddress = "0xAA421eE55B5769200B2292CE33130E6550F88891";
 
-const contractAddress = "0x69f3Dbe29496CDe8910856bF6B32fD6299aB3A41";
 
 export const handlePlayOrStart = async (signer, isRoundActive) => {
   try {
@@ -31,8 +31,6 @@ export const handleEndRound = async (signer) => {
   try {
     if (signer) {
       const buttonGame = new Contract(contractAddress, ButtonGameABI, signer);
-
-      // Call the endRound function
       const tx = await buttonGame.endRound();
       await tx.wait(); // Wait for the transaction to be mined
       console.log("Ended the round");

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Web3 from "web3";
 import { BiStopwatch } from "react-icons/bi";
-import ButtonGameABI from "../abi/ButtonGame.json";
+import ButtonGameABI from "../abi/Button.json";
 import { handlePlayOrStart, handleEndRound } from "../actions/gameActions.js";
 import { useSigner } from "wagmi";
-const contractAddress = "0x69f3Dbe29496CDe8910856bF6B32fD6299aB3A41";
+import BannerToast from "./ToastBanner";
+const contractAddress = "0xAA421eE55B5769200B2292CE33130E6550F88891";
 
 export default function ButtonComponent() {
   const [currentKing, setCurrentKing] = useState(null);
@@ -14,6 +15,8 @@ export default function ButtonComponent() {
   const { data: signer } = useSigner();
   const [timeRemaining, setTimeRemaining] = useState(null);
   const [loading, setLoading] = useState(false); // Loading state
+
+  const [state, newBanner] = BannerToast();
 
   const refreshState = async () => {
     if (window.ethereum) {
@@ -63,25 +66,56 @@ export default function ButtonComponent() {
   const handlePlayOrStartButton = async () => {
     if (!loading) {
       setLoading(true);
-      if (isRoundActive && timeRemaining !== "00:00") {
-        await handlePlayOrStart(signer, true);
-      } else if (!isRoundActive && timeRemaining === "00:00") {
-        await handlePlayOrStart(signer, false);
+      try {
+        if (isRoundActive && timeRemaining !== "00:00") {
+          const result = await handlePlayOrStart(signer, true);
+          console.log(result);
+          newBanner({
+            message: "You successfully played!",
+            status: "success",
+          });
+        } else if (!isRoundActive && timeRemaining === "00:00") {
+          const result = await handlePlayOrStart(signer, false);
+          console.log(result);
+          newBanner({
+            message: "You successfully started a new round!",
+            status: "success",
+          });
+        }
+        refreshState();
+      } catch (error) {
+        console.error("Error occurred:", error);
+        newBanner({
+          message: "Something went wrong!",
+          status: "error",
+        });
       }
-      refreshState();
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   const handleEndRoundButton = async () => {
     if (!loading) {
       setLoading(true);
-      if (isRoundActive && timeRemaining === "00:00") {
-        await handleEndRound(signer);
+      try {
+        if (isRoundActive && timeRemaining === "00:00") {
+          const result = await handleEndRound(signer);
+          console.log(result);
+          newBanner({
+            message: "You successfully ended the round!",
+            status: "success",
+          });
+        }
+        refreshState();
+      } catch (error) {
+        console.error("Error occurred:", error);
+        newBanner({
+          message: "Something went wrong!",
+          status: "error",
+        });
       }
-      refreshState();
+      setLoading(false);
     }
-    setLoading(false);
   };
   return (
     <div className="flex font-syne justify-between">
