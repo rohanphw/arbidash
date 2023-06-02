@@ -33,7 +33,7 @@ export default function HeaderComponent() {
                       >
                         {isConnected ? (
                           <div className="flex flex-col">
-                            <div className="flex text-left font-semibold">
+                            <div className="flex text-left font-bold">
                               <div>
                                 {address.slice(0, 6) +
                                   "..." +
@@ -42,7 +42,7 @@ export default function HeaderComponent() {
                             </div>
                           </div>
                         ) : (
-                          <div className="flex flex-row gap-3 font-medium">
+                          <div className="flex flex-row gap-3 font-bold">
                             <span>Connect Wallet</span>
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -64,7 +64,6 @@ export default function HeaderComponent() {
                     </div>
                   </div>
                 </div>
-                
               </div>
             );
           }}
