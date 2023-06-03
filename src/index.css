@@ -35,12 +35,12 @@
 
 .loader-t {
   margin-top: 2px;
-  width: 30px;
-  height: 30px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   display: inline-block;
-  border-top: 3px solid #fff;
-  border-right: 3px solid transparent;
+  border-top: 1.5px solid #000000;
+  border-right: 1.5px solid transparent;
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
 }

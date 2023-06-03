@@ -64,7 +64,15 @@ export default function ButtonComponent() {
   }, [roundEndsAt]);
 
   const handlePlayOrStartButton = async () => {
-    if (!loading) {
+    if (!signer) {
+      newBanner({
+        message: "Wallet not connected",
+        status: "error",
+      });
+      return;
+    }
+
+    if (!loading && signer) {
       setLoading(true);
       try {
         if (isRoundActive && timeRemaining !== "00:00") {
@@ -95,7 +103,15 @@ export default function ButtonComponent() {
   };
 
   const handleEndRoundButton = async () => {
-    if (!loading) {
+    if (!signer) {
+      newBanner({
+        message: "Wallet not connected",
+        status: "error",
+      });
+      return;
+    }
+
+    if (!loading && signer) {
       setLoading(true);
       try {
         if (isRoundActive && timeRemaining === "00:00") {
@@ -125,7 +141,7 @@ export default function ButtonComponent() {
             <div className="absolute inset-0 bg-green-400 ring-1 ring-black"></div>
             <div className="relative bg-[#fcfced] -inset-x-2.5 -inset-y-2.5 flex items-center justify-center border-4 border-transparent shadow-sm font-light text-black ring-1 ring-black">
               <div className="flex flex-col">
-                <div className="flex flex-row gap-36 lg:gap-56 xl:gap-56 px-4 py-6 justify-between">
+                <div className="flex flex-row gap-36 lg:gap-60 xl:gap-60 px-6 py-6 justify-between">
                   <div className="flex gap-3 flex-col">
                     <span className="text-l flex gap-2 font-medium">
                       <p className="font-semibold"> Current King: </p>
@@ -134,7 +150,7 @@ export default function ButtonComponent() {
                           currentKing ? (
                             currentKing
                           ) : (
-                            <span className="loader"></span>
+                            <span className="loader-t"></span>
                           )
                         ) : (
                           "Round not active"
@@ -151,7 +167,7 @@ export default function ButtonComponent() {
                               "ether"
                             )} ETH`
                           ) : (
-                            <span className="loader"></span>
+                            <span className="loader-t"></span>
                           )
                         ) : (
                           "Round not active"
@@ -165,7 +181,7 @@ export default function ButtonComponent() {
                           timeRemaining ? (
                             timeRemaining
                           ) : (
-                            <span className="loader"></span>
+                            <span className="loader-t"></span>
                           )
                         ) : (
                           "Round not active"

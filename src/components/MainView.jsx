@@ -15,18 +15,12 @@ export default function MainViewComponent() {
               <div className="flex flex-col text-center">
                 <h1 className="text-2xl">How does it work ?</h1>
                 <p className="text-l lg:text-xl xl:text-xl font-medium text-justify pt-6 ">
-                  This is an experiment moderated by a smart contract deployed
-                  on Arbitrum One chain. <br />
-                  Whenever someone presses the button above, the contract will
-                  request user to deposit <br />
-                  <span className="bg-yellow-300 text-black">
-                    0.0005 ETH
-                  </span>{" "}
-                  to the contract and set a countdown for 2 hours and make him
-                  the owner of the total deposited value. If someone else
-                  presses the button before the countdown ends, the countdown
-                  will reset to 2 hours and the last depositor will become the
-                  owner of the total deposited value. <br />
+                  Arbidash is a smart contract experiment on Arbitrum. Hit the
+                  button, deposit{" "}
+                  <span className="bg-yellow-300 text-black">0.0005 ETH </span>{" "}
+                  , and trigger a 2-hour countdown to potentially claim the
+                  total deposit pot. But stay alert - a new deposit resets the
+                  clock, and the last to deposit becomes the owner of the stash!
                 </p>
               </div>
             </div>
