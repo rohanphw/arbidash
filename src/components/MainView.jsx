@@ -17,7 +17,7 @@ export default function MainViewComponent() {
                 <p className="text-l lg:text-xl xl:text-xl font-medium text-justify pt-6 ">
                   Arbidash is a smart contract experiment on Arbitrum. Hit the
                   button, deposit{" "}
-                  <span className="bg-yellow-300 text-black">0.0005 ETH </span>{" "}
+                  <span className="bg-yellow-300 text-black">0.0005 ETH</span>{" "}
                   , and trigger a 2-hour countdown to potentially claim the
                   total deposit pot. But stay alert - a new deposit resets the
                   clock, and the last to deposit becomes the owner of the stash!
