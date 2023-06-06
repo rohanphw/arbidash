@@ -5,7 +5,7 @@ import { useEffect } from "react";
 export default function HeaderComponent() {
   return (
     <div className="h-[25vh] bg-dotted bg-opacity-10 font-space bg-[#fcfced]">
-      <div className="flex justify-between flex-col md:flex-row px-4 md:px-24 py-20">
+      <div className="flex justify-between flex-col md:flex-row px-4 md:px-24 py-12 lg:py-20 md:py-20 xl:py-20">
         <div className="flex flex-col text-center md:text-left mb-4 md:mb-0">
           <h1 className="text-3xl md:text-5xl font-syne text-gray-900 font-bold">
             ArbiDash
