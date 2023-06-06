@@ -116,46 +116,6 @@ export default function ButtonComponent() {
       setLoading(false);
     }
   };
-
-  // const handlePlayOrStartButton = async () => {
-  //   if (!signer) {
-  //     newBanner({
-  //       message: "Wallet not connected",
-  //       status: "error",
-  //     });
-  //     return;
-  //   }
-
-  //   if (!loading && signer) {
-  //     setLoading(true);
-  //     try {
-  //       if (isRoundActive && timeRemaining !== "00:00:00") {
-  //         const result = await handlePlayOrStart(signer, true);
-  //         console.log(result);
-  //         newBanner({
-  //           message: "You successfully played!",
-  //           status: "success",
-  //         });
-  //       } else if (!isRoundActive && timeRemaining === "00:00:00") {
-  //         const result = await handlePlayOrStart(signer, false);
-  //         console.log(result);
-  //         newBanner({
-  //           message: "You successfully started a new round!",
-  //           status: "success",
-  //         });
-  //       }
-  //       refreshState();
-  //     } catch (error) {
-  //       console.error("Error occurred:", error);
-  //       newBanner({
-  //         message: "Something went wrong!",
-  //         status: "error",
-  //       });
-  //     }
-  //     setLoading(false);
-  //   }
-  // };
-
   const handleEndRoundButton = async () => {
     if (!signer) {
       newBanner({
