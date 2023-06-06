@@ -1,5 +1,7 @@
 import { ConnectKitButton } from "connectkit";
 import Arbitrum from "../assets/arbitrum-logo.png";
+import { useEffect } from "react";
+
 
 export default function HeaderComponent() {
   return (
