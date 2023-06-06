@@ -2,16 +2,15 @@ import { ConnectKitButton } from "connectkit";
 import Arbitrum from "../assets/arbitrum-logo.png";
 import { useEffect } from "react";
 
-
 export default function HeaderComponent() {
   return (
     <div className="h-[25vh] bg-dotted bg-opacity-10 font-space bg-[#fcfced]">
-      <div className="flex justify-between flex-row px-24 py-20">
-        <div className="flex flex-col">
-          <h1 className="text-5xl font-syne text-gray-900 font-bold">
+      <div className="flex justify-between flex-col md:flex-row px-4 md:px-24 py-20">
+        <div className="flex flex-col text-center md:text-left mb-4 md:mb-0">
+          <h1 className="text-3xl md:text-5xl font-syne text-gray-900 font-bold">
             ArbiDash
           </h1>
-          <h1 className="text-xl font-syne text-gray-500 font-medium">
+          <h1 className="text-lg md:text-xl font-syne text-gray-500 font-medium">
             A social experiment on Arbitrum One{" "}
             <img
               alt="arb logo"
@@ -26,12 +25,12 @@ export default function HeaderComponent() {
             return (
               <div>
                 <div>
-                  <div className="hidden lg:flex md:flex xl:flex ml-12 space-x-4">
+                  <div className="flex justify-center md:justify-end md:ml-12 space-x-4">
                     <div className="relative mt-2">
                       <div className="absolute inset-0 bg-yellow-300 ring-1 ring-black"></div>
                       <button
                         onClick={show}
-                        className="relative -inset-x-2 text-l -inset-y-2 hover:-inset-x-1.5 hover:-inset-y-1.5 bg-white flex items-center justify-center border-4 border-transparent px-3 py-3 shadow-sm font-light text-black ring-1 ring-black"
+                        className="relative -inset-x-2 text-sm md:text-lg -inset-y-2 hover:-inset-x-1.5 hover:-inset-y-1.5 bg-white flex items-center justify-center border-4 border-transparent px-3 py-3 shadow-sm font-light text-black ring-1 ring-black"
                       >
                         {isConnected ? (
                           <div className="flex flex-col">
