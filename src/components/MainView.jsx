@@ -2,7 +2,7 @@ import ButtonComponent from "./ButtonComponent";
 
 export default function MainViewComponent() {
   return (
-    <div className="h-[75vh] px-20 flex flex-col pt-24 items-center bg-purple-600 border-[2px] border-black rounded-t-3xl">
+    <div className="h-[75vh] px-20 flex flex-col py-24 items-center bg-purple-600 border-[2px] border-black rounded-t-3xl">
       <ButtonComponent />
       <div className="relative mt-12">
         <div className="absolute inset-0 bg-orange-400 ring-1 ring-black"></div>
