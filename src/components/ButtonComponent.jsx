@@ -5,7 +5,7 @@ import ButtonGameABI from "../abi/Button.json";
 import { handlePlayOrStart, handleEndRound } from "../actions/gameActions.js";
 import { useSigner } from "wagmi";
 import BannerToast from "./ToastBanner";
-const contractAddress = "0x73fEEe827bB4246193740461F4cBfaB3FcF28711";
+const contractAddress = "0x084E533C5BE803AdAe6734e7Eb03904075f4B2fd";
 
 export default function ButtonComponent() {
   const [currentKing, setCurrentKing] = useState(null);
@@ -77,6 +77,17 @@ export default function ButtonComponent() {
     }
 
     if (!loading && signer) {
+      const balance = await signer.getBalance();
+      const etherBalance = Web3.utils.fromWei(balance.toString(), "ether");
+
+      if (parseFloat(etherBalance) < 0.0005) {
+        newBanner({
+          message: "Insufficient balance to play. Please top up your wallet.",
+          status: "error",
+        });
+        return;
+      }
+
       setLoading(true);
       try {
         if (isRoundActive && timeRemaining !== "00:00:00") {
@@ -105,6 +116,45 @@ export default function ButtonComponent() {
       setLoading(false);
     }
   };
+
+  // const handlePlayOrStartButton = async () => {
+  //   if (!signer) {
+  //     newBanner({
+  //       message: "Wallet not connected",
+  //       status: "error",
+  //     });
+  //     return;
+  //   }
+
+  //   if (!loading && signer) {
+  //     setLoading(true);
+  //     try {
+  //       if (isRoundActive && timeRemaining !== "00:00:00") {
+  //         const result = await handlePlayOrStart(signer, true);
+  //         console.log(result);
+  //         newBanner({
+  //           message: "You successfully played!",
+  //           status: "success",
+  //         });
+  //       } else if (!isRoundActive && timeRemaining === "00:00:00") {
+  //         const result = await handlePlayOrStart(signer, false);
+  //         console.log(result);
+  //         newBanner({
+  //           message: "You successfully started a new round!",
+  //           status: "success",
+  //         });
+  //       }
+  //       refreshState();
+  //     } catch (error) {
+  //       console.error("Error occurred:", error);
+  //       newBanner({
+  //         message: "Something went wrong!",
+  //         status: "error",
+  //       });
+  //     }
+  //     setLoading(false);
+  //   }
+  // };
 
   const handleEndRoundButton = async () => {
     if (!signer) {

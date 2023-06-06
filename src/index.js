@@ -4,13 +4,13 @@ import "./index.css";
 import App from "./App";
 import { WagmiConfig, createClient } from "wagmi";
 import { ConnectKitProvider, getDefaultClient } from "connectkit";
-import { moonbaseAlpha } from "wagmi/chains";
+import { arbitrum } from "wagmi/chains";
 import { ChakraProvider } from "@chakra-ui/react";
 
-const chains = [moonbaseAlpha];
+const chains = [arbitrum];
 const client = createClient(
   getDefaultClient({
-    appName: "Button",
+    appName: "ArbiDash",
     chains,
   })
 );
