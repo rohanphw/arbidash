@@ -5,7 +5,7 @@ import ButtonGameABI from "../abi/Button.json";
 import { handlePlayOrStart, handleEndRound } from "../actions/gameActions.js";
 import { useSigner } from "wagmi";
 import BannerToast from "./ToastBanner";
-const contractAddress = "0xAA421eE55B5769200B2292CE33130E6550F88891";
+const contractAddress = "0x73fEEe827bB4246193740461F4cBfaB3FcF28711";
 
 export default function ButtonComponent() {
   const [currentKing, setCurrentKing] = useState(null);
@@ -46,15 +46,19 @@ export default function ButtonComponent() {
         if (remaining >= 0) {
           const seconds = Math.floor((remaining / 1000) % 60);
           const minutes = Math.floor((remaining / 1000 / 60) % 60);
+          const hours = Math.floor((remaining / (1000 * 60 * 60)) % 24);
           setTimeRemaining(
-            (minutes < 10 ? "0" : "") +
+            (hours < 10 ? "0" : "") +
+              hours +
+              ":" +
+              (minutes < 10 ? "0" : "") +
               minutes +
               ":" +
               (seconds < 10 ? "0" : "") +
               seconds
           );
         } else {
-          setTimeRemaining("00:00");
+          setTimeRemaining("00:00:00");
           clearInterval(interval);
         }
       }
@@ -75,14 +79,14 @@ export default function ButtonComponent() {
     if (!loading && signer) {
       setLoading(true);
       try {
-        if (isRoundActive && timeRemaining !== "00:00") {
+        if (isRoundActive && timeRemaining !== "00:00:00") {
           const result = await handlePlayOrStart(signer, true);
           console.log(result);
           newBanner({
             message: "You successfully played!",
             status: "success",
           });
-        } else if (!isRoundActive && timeRemaining === "00:00") {
+        } else if (!isRoundActive && timeRemaining === "00:00:00") {
           const result = await handlePlayOrStart(signer, false);
           console.log(result);
           newBanner({
@@ -114,7 +118,7 @@ export default function ButtonComponent() {
     if (!loading && signer) {
       setLoading(true);
       try {
-        if (isRoundActive && timeRemaining === "00:00") {
+        if (isRoundActive && timeRemaining === "00:00:00") {
           const result = await handleEndRound(signer);
           console.log(result);
           newBanner({
@@ -191,7 +195,7 @@ export default function ButtonComponent() {
                     </span>
                   </div>
                   <div className="flex gap-3 pr-2">
-                    {!isRoundActive && timeRemaining === "00:00" && (
+                    {!isRoundActive && timeRemaining === "00:00:00" && (
                       <button
                         onClick={handlePlayOrStartButton}
                         className=" bg-pink-500 bg-opacity-90 hover:bg-opacity-100 px-8 text-white text-2xl ring-1 ring-black font-medium"
@@ -203,21 +207,21 @@ export default function ButtonComponent() {
                         )}
                       </button>
                     )}
-                    {timeRemaining !== "00:00" && (
+                    {timeRemaining !== "00:00:00" && (
                       <button
                         onClick={handlePlayOrStartButton}
                         className=" bg-pink-500 bg-opacity-90 hover:bg-opacity-100 px-8 text-white text-2xl ring-1 ring-black font-medium"
                       >
                         {loading ? (
                           <span className="loader p-5"></span>
-                        ) : isRoundActive && timeRemaining !== "00:00" ? (
+                        ) : isRoundActive && timeRemaining !== "00:00:00" ? (
                           "Hit Me!"
                         ) : (
                           "Start Round"
                         )}
                       </button>
                     )}
-                    {isRoundActive && timeRemaining === "00:00" && (
+                    {isRoundActive && timeRemaining === "00:00:00" && (
                       <button
                         onClick={handleEndRoundButton}
                         className=" bg-pink-500 bg-opacity-90 hover:bg-opacity-100 px-8 text-white text-2xl ring-1 ring-black font-medium"

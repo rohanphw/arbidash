@@ -1,5 +1,5 @@
 import { Contract, utils } from "ethers";
-import ButtonGameABI from "../abi/Button.json";
+import ButtonGameABI from "../abi/ButtonArbTest.json";
 const contractAddress = "0x73fEEe827bB4246193740461F4cBfaB3FcF28711";
 
 export const handlePlayOrStart = async (signer, isRoundActive) => {
