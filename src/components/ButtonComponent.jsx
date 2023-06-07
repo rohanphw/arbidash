@@ -196,7 +196,7 @@ export default function ButtonComponent() {
                       "Round not active"
                     )}
                   </p>
-                  <BiStopwatch className="h-5 w-5 mb-[0.5px] inline-block" />
+                  <BiStopwatch className="h-5 w-5 my-0.5 -mx-1 inline-block" />
                 </span>
               </div>
               <div className="flex gap-3 pr-2 w-full md:w-auto mt-4 md:mt-0">
