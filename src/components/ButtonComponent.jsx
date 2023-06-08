@@ -5,6 +5,7 @@ import ButtonGameABI from "../abi/Button.json";
 import { handlePlayOrStart, handleEndRound } from "../actions/gameActions.js";
 import { useSigner } from "wagmi";
 import BannerToast from "./ToastBanner";
+import { FaCrown } from "react-icons/fa";
 const contractAddress = "0x084E533C5BE803AdAe6734e7Eb03904075f4B2fd";
 
 export default function ButtonComponent() {
@@ -152,7 +153,7 @@ export default function ButtonComponent() {
       <div className="flex justify-center w-full md:w-auto">
         <div className="relative w-full lg:w-auto md:w-auto xl:w-auto">
           <div className="absolute inset-0 bg-green-400 ring-1 ring-black"></div>
-          <div className="relative bg-[#fcfced] -inset-x-2.5 -inset-y-2.5 flex items-center justify-center border-4 border-transparent shadow-sm font-light text-black ring-1 ring-black">
+          <div className="relative flex-col bg-[#fcfced] -inset-x-2.5 -inset-y-2.5 flex items-center justify-center border-4 border-transparent shadow-sm font-light text-black ring-1 ring-black">
             <div className="flex flex-col w-full md:flex-row md:gap-36 lg:gap-56 xl:gap-56 px-2 py-6 justify-between">
               <div className="flex gap-3 flex-col w-full md:w-auto">
                 <span className="text-l flex gap-2 font-medium">
@@ -166,6 +167,9 @@ export default function ButtonComponent() {
                       )
                     ) : (
                       "Round not active"
+                    )}
+                    {isRoundActive && timeRemaining === "00:00:00" && (
+                      <span className="ml-2 inline-block">👑</span>
                     )}
                   </p>
                 </span>
